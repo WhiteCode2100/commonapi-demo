@@ -1,0 +1,6 @@
+*.code-workspace
+*.vscode-ctags
+build
+capicxx*
+dbus*
+vsomeip*
