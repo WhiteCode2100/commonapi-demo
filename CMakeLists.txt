@@ -110,31 +110,31 @@ link_directories(
 #generator dbus applications
 add_executable(HelloWorldClientDbus
 	src/HelloWorldClient.cpp
-	src-gen/dbus/v1/commonapi/HelloWorldDBusProxy.cpp
-	src-gen/dbus/v1/commonapi/HelloWorldDBusDeployment
+	src-gen/dbus/v1/commonapi/nio_m4_agent/HelloWorldDBusProxy.cpp
+	src-gen/dbus/v1/commonapi/nio_m4_agent/HelloWorldDBusDeployment
 )
 target_link_libraries(HelloWorldClientDbus CommonAPI CommonAPI-DBus dbus-1)
 add_executable(HelloWorldServiceDbus
 	src/HelloWorldService.cpp
 	src/HelloWorldStubImpl.cpp
-	src-gen/dbus/v1/commonapi/HelloWorldDBusStubAdapter.cpp
-	src-gen/core/v1/commonapi/HelloWorldStubDefault
-	src-gen/dbus/v1/commonapi/HelloWorldDBusDeployment
+	src-gen/dbus/v1/commonapi/nio_m4_agent/HelloWorldDBusStubAdapter.cpp
+	src-gen/core/v1/commonapi/nio_m4_agent/HelloWorldStubDefault
+	src-gen/dbus/v1/commonapi/nio_m4_agent/HelloWorldDBusDeployment
 )
 target_link_libraries(HelloWorldServiceDbus CommonAPI CommonAPI-DBus dbus-1)
 
 #generate someip applications
 add_executable(HelloWorldClientSomeip
 	src/HelloWorldClient.cpp
-	src-gen/someip/v1/commonapi/HelloWorldSomeIPProxy.cpp
-	src-gen/someip/v1/commonapi/HelloWorldSomeIPDeployment.cpp
+	src-gen/someip/v1/commonapi/nio_m4_agent/HelloWorldSomeIPProxy.cpp
+	src-gen/someip/v1/commonapi/nio_m4_agent/HelloWorldSomeIPDeployment.cpp
 )
 target_link_libraries(HelloWorldClientSomeip CommonAPI CommonAPI-SomeIP vsomeip3)
 add_executable(HelloWorldServiceSomeip
 	src/HelloWorldService.cpp
 	src/HelloWorldStubImpl.cpp
-	src-gen/someip/v1/commonapi/HelloWorldSomeIPStubAdapter.cpp
-	src-gen/core/v1/commonapi/HelloWorldStubDefault
-	src-gen/someip/v1/commonapi/HelloWorldSomeIPDeployment
+	src-gen/someip/v1/commonapi/nio_m4_agent/HelloWorldSomeIPStubAdapter.cpp
+	src-gen/core/v1/commonapi/nio_m4_agent/HelloWorldStubDefault
+	src-gen/someip/v1/commonapi/nio_m4_agent/HelloWorldSomeIPDeployment
 )
 target_link_libraries(HelloWorldServiceSomeip CommonAPI CommonAPI-SomeIP vsomeip3)

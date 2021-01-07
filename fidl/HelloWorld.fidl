@@ -1,4 +1,4 @@
-package commonapi
+package commonapi.nio_m4_agent
 
 interface HelloWorld {
   version {major 1 minor 0}

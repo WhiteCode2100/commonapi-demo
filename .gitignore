@@ -4,3 +4,4 @@ build
 capicxx*
 dbus*
 vsomeip*
+src-gen
