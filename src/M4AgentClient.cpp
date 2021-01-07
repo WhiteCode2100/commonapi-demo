@@ -1,6 +1,6 @@
 /*
  * @Description: 
- * @FilePath: /example/src/HelloWorldClient.cpp
+ * @FilePath: /example/src/M4AgentClient.cpp
  * @Version: 1.0
  * @Autor: Guangxing Yang
  * @Date: 2021-01-06 10:35:47
@@ -11,14 +11,14 @@
 #include <string>
 #include <unistd.h>
 #include <CommonAPI/CommonAPI.hpp>
-#include <v1/commonapi/nio_m4_agent/HelloWorldProxy.hpp>
+#include <v1/commonapi/nio_m4_agent/M4AgentProxy.hpp>
 
 using namespace v1_0::commonapi::nio_m4_agent;
 
 int main() {
     std::shared_ptr < CommonAPI::Runtime > runtime = CommonAPI::Runtime::get();
-    std::shared_ptr<HelloWorldProxy<>> myProxy =
-    	runtime->buildProxy<HelloWorldProxy>("local", "test");
+    std::shared_ptr<M4AgentProxy<>> myProxy =
+    	runtime->buildProxy<M4AgentProxy>("local", "test");
 
     std::cout << "Checking availability!" << std::endl;
     while (!myProxy->isAvailable())

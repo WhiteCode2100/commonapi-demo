@@ -80,9 +80,9 @@ set(VSOMEIP_PATH "${VSOMEIP_INCLUDE_DIRS}")
 endif()
 
 #generate source file form fidl 
-execute_process(COMMAND ${SDK_PATH}/bin/capicxx-core-tools/commonapi-core-generator-linux-x86_64 -sk ${PROJECT_SOURCE_DIR}/fidl/HelloWorld.fidl -d ${PROJECT_SOURCE_DIR}/src-gen/core)
-execute_process(COMMAND ${SDK_PATH}/bin/capicxx-dbus-tools/commonapi-dbus-generator-linux-x86_64 ${PROJECT_SOURCE_DIR}/fidl/HelloWorld.fidl -d ${PROJECT_SOURCE_DIR}/src-gen/dbus)
-execute_process(COMMAND ${SDK_PATH}/bin/capicxx-someip-tools/commonapi-someip-generator-linux-x86 ${PROJECT_SOURCE_DIR}/fidl/HelloWorld.fdepl -d ${PROJECT_SOURCE_DIR}/src-gen/someip)
+execute_process(COMMAND ${SDK_PATH}/bin/capicxx-core-tools/commonapi-core-generator-linux-x86_64 -sk ${PROJECT_SOURCE_DIR}/fidl/M4Agent.fidl -d ${PROJECT_SOURCE_DIR}/src-gen/core)
+execute_process(COMMAND ${SDK_PATH}/bin/capicxx-dbus-tools/commonapi-dbus-generator-linux-x86_64 ${PROJECT_SOURCE_DIR}/fidl/M4Agent.fidl -d ${PROJECT_SOURCE_DIR}/src-gen/dbus)
+execute_process(COMMAND ${SDK_PATH}/bin/capicxx-someip-tools/commonapi-someip-generator-linux-x86 ${PROJECT_SOURCE_DIR}/fidl/M4Agent.fdepl -d ${PROJECT_SOURCE_DIR}/src-gen/someip)
 
 #include all head file folders
 include_directories(
@@ -108,33 +108,33 @@ link_directories(
 )
 
 #generator dbus applications
-add_executable(HelloWorldClientDbus
-	src/HelloWorldClient.cpp
-	src-gen/dbus/v1/commonapi/nio_m4_agent/HelloWorldDBusProxy.cpp
-	src-gen/dbus/v1/commonapi/nio_m4_agent/HelloWorldDBusDeployment
+add_executable(M4AgentClientDbus
+	src/M4AgentClient.cpp
+	src-gen/dbus/v1/commonapi/nio_m4_agent/M4AgentDBusProxy.cpp
+	src-gen/dbus/v1/commonapi/nio_m4_agent/M4AgentDBusDeployment
 )
-target_link_libraries(HelloWorldClientDbus CommonAPI CommonAPI-DBus dbus-1)
-add_executable(HelloWorldServiceDbus
-	src/HelloWorldService.cpp
-	src/HelloWorldStubImpl.cpp
-	src-gen/dbus/v1/commonapi/nio_m4_agent/HelloWorldDBusStubAdapter.cpp
-	src-gen/core/v1/commonapi/nio_m4_agent/HelloWorldStubDefault
-	src-gen/dbus/v1/commonapi/nio_m4_agent/HelloWorldDBusDeployment
+target_link_libraries(M4AgentClientDbus CommonAPI CommonAPI-DBus dbus-1)
+add_executable(M4AgentServiceDbus
+	src/M4AgentService.cpp
+	src/M4AgentStubImpl.cpp
+	src-gen/dbus/v1/commonapi/nio_m4_agent/M4AgentDBusStubAdapter.cpp
+	src-gen/core/v1/commonapi/nio_m4_agent/M4AgentStubDefault
+	src-gen/dbus/v1/commonapi/nio_m4_agent/M4AgentDBusDeployment
 )
-target_link_libraries(HelloWorldServiceDbus CommonAPI CommonAPI-DBus dbus-1)
+target_link_libraries(M4AgentServiceDbus CommonAPI CommonAPI-DBus dbus-1)
 
 #generate someip applications
-add_executable(HelloWorldClientSomeip
-	src/HelloWorldClient.cpp
-	src-gen/someip/v1/commonapi/nio_m4_agent/HelloWorldSomeIPProxy.cpp
-	src-gen/someip/v1/commonapi/nio_m4_agent/HelloWorldSomeIPDeployment.cpp
+add_executable(M4AgentClientSomeip
+	src/M4AgentClient.cpp
+	src-gen/someip/v1/commonapi/nio_m4_agent/M4AgentSomeIPProxy.cpp
+	src-gen/someip/v1/commonapi/nio_m4_agent/M4AgentSomeIPDeployment.cpp
 )
-target_link_libraries(HelloWorldClientSomeip CommonAPI CommonAPI-SomeIP vsomeip3)
-add_executable(HelloWorldServiceSomeip
-	src/HelloWorldService.cpp
-	src/HelloWorldStubImpl.cpp
-	src-gen/someip/v1/commonapi/nio_m4_agent/HelloWorldSomeIPStubAdapter.cpp
-	src-gen/core/v1/commonapi/nio_m4_agent/HelloWorldStubDefault
-	src-gen/someip/v1/commonapi/nio_m4_agent/HelloWorldSomeIPDeployment
+target_link_libraries(M4AgentClientSomeip CommonAPI CommonAPI-SomeIP vsomeip3)
+add_executable(M4AgentServiceSomeip
+	src/M4AgentService.cpp
+	src/M4AgentStubImpl.cpp
+	src-gen/someip/v1/commonapi/nio_m4_agent/M4AgentSomeIPStubAdapter.cpp
+	src-gen/core/v1/commonapi/nio_m4_agent/M4AgentStubDefault
+	src-gen/someip/v1/commonapi/nio_m4_agent/M4AgentSomeIPDeployment
 )
-target_link_libraries(HelloWorldServiceSomeip CommonAPI CommonAPI-SomeIP vsomeip3)
+target_link_libraries(M4AgentServiceSomeip CommonAPI CommonAPI-SomeIP vsomeip3)

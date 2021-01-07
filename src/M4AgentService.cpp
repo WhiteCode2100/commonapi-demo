@@ -1,6 +1,6 @@
 /*
  * @Description: 
- * @FilePath: /example/src/HelloWorldService.cpp
+ * @FilePath: /example/src/M4AgentService.cpp
  * @Version: 1.0
  * @Autor: Guangxing Yang
  * @Date: 2021-01-06 10:36:13
@@ -10,14 +10,14 @@
 #include <iostream>
 #include <thread>
 #include <CommonAPI/CommonAPI.hpp>
-#include "HelloWorldStubImpl.hpp"
+#include "M4AgentStubImpl.hpp"
 
 using namespace std;
 
 int main() {
     std::shared_ptr<CommonAPI::Runtime> runtime = CommonAPI::Runtime::get();
-    std::shared_ptr<HelloWorldStubImpl> myService =
-    	std::make_shared<HelloWorldStubImpl>();
+    std::shared_ptr<M4AgentStubImpl> myService =
+    	std::make_shared<M4AgentStubImpl>();
     runtime->registerService("local", "test", myService);
     std::cout << "Successfully Registered Service!" << std::endl;
 
