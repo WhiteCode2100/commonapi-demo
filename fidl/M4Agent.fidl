@@ -4,10 +4,10 @@ interface M4Agent {
   version {major 1 minor 0}
   method M4Transfer {
     in {
-      String name
+      String in_message
     }
     out {
-      String message
+      String out_message
     }
   }
 }

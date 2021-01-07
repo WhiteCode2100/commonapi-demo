@@ -5,7 +5,7 @@
  * @Autor: Guangxing Yang
  * @Date: 2021-01-06 10:35:47
  * @LastEditors: Guangxing Yang
- * @LastEditTime: 2021-01-07 14:43:46
+ * @LastEditTime: 2021-01-07 14:57:05
  */
 #include <iostream>
 #include <string>
@@ -27,7 +27,7 @@ int main() {
 
     CommonAPI::CallStatus callStatus;
     std::string returnMessage;
-    myProxy->M4Transfer("Bob", callStatus, returnMessage);
+    myProxy->M4Transfer("m4 agent", callStatus, returnMessage);
     std::cout << "Got message: '" << returnMessage << "'\n";
     return 0;
 }

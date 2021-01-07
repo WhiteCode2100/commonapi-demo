@@ -5,14 +5,12 @@
  * @Autor: Guangxing Yang
  * @Date: 2021-01-06 10:36:13
  * @LastEditors: Guangxing Yang
- * @LastEditTime: 2021-01-07 14:31:40
+ * @LastEditTime: 2021-01-07 14:49:36
  */
 #include <iostream>
 #include <thread>
 #include <CommonAPI/CommonAPI.hpp>
 #include "M4AgentStubImpl.hpp"
-
-using namespace std;
 
 int main() {
     std::shared_ptr<CommonAPI::Runtime> runtime = CommonAPI::Runtime::get();
