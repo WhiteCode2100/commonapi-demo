@@ -5,25 +5,25 @@
  * @Autor: Guangxing Yang
  * @Date: 2021-01-06 10:35:47
  * @LastEditors: Guangxing Yang
- * @LastEditTime: 2021-01-07 18:19:35
+ * @LastEditTime: 2021-01-07 18:50:08
  */
 #include <iostream>
 #include <string>
 #include <unistd.h>
 #include <CommonAPI/CommonAPI.hpp>
 #include <v1/commonapi/nio_m4_agent/M4AgentProxy.hpp>
+#include <tigerLogger.h>
 
 using namespace v1_0::commonapi::nio_m4_agent;
 
 int main() {
     std::shared_ptr < CommonAPI::Runtime > runtime = CommonAPI::Runtime::get();
-    std::shared_ptr<M4AgentProxy<>> myProxy =
-    	runtime->buildProxy<M4AgentProxy>("local", "m4_agent");
+    std::shared_ptr<M4AgentProxy<>> myProxy =runtime->buildProxy<M4AgentProxy>("local", "m4_agent");
 
-    std::cout << "Checking availability!" << std::endl;
+    LOG_INFO << "Checking availability!";
     while (!myProxy->isAvailable())
         usleep(10);
-    std::cout << "Available..." << std::endl;
+    LOG_INFO << "Available...";
 
     CommonAPI::CallStatus callStatus;
     CommonAPI::ByteBuffer inputMsg;

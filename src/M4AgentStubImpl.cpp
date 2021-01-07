@@ -5,8 +5,9 @@
  * @Autor: Guangxing Yang
  * @Date: 2021-01-06 10:37:03
  * @LastEditors: Guangxing Yang
- * @LastEditTime: 2021-01-07 18:19:54
+ * @LastEditTime: 2021-01-07 18:31:52
  */
+#include <tigerLogger.h>
 #include "M4AgentStubImpl.hpp"
 
 M4AgentStubImpl::M4AgentStubImpl() { }

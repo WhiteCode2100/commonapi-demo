@@ -12,6 +12,7 @@ set(CAPICXX_DBUS_PATH "${PROJECT_SOURCE_DIR}/capicxx-dbus-runtime/include")
 set(CAPICXX_SOMEIP_PATH "${PROJECT_SOURCE_DIR}/capicxx-someip-runtime/include")
 set(DBUS_PATH "${PROJECT_SOURCE_DIR}/dbus-1.10.10")
 set(VSOMEIP_PATH "${PROJECT_SOURCE_DIR}/vsomeip/interface")
+set(TIGER_FRAMEWORK_PATH "${PROJECT_SOURCE_DIR}/tiger-framework/tigerLogger")
 
 #define commonapi link folder path
 set(CAPICXX_CORE_LINK_PATH "${PROJECT_SOURCE_DIR}/capicxx-core-runtime/build")
@@ -19,6 +20,7 @@ set(CAPICXX_DBUS_LINK_PATH "${PROJECT_SOURCE_DIR}/capicxx-dbus-runtime/build")
 set(CAPICXX_SOMEIP_LINK_PATH "${PROJECT_SOURCE_DIR}/capicxx-someip-runtime/build")
 set(DBUS_LINK_PATH "${PROJECT_SOURCE_DIR}/dbus-1.10.10/dbus/.libs")
 set(VSOMEIP_LINK_PATH "${PROJECT_SOURCE_DIR}/vsomeip/build")
+set(TIGER_LINK_PATH "${PROJECT_SOURCE_DIR}/tiger-framework/build/tigerLogger")
 
 # download capicxx-core-runtime and compile
 if(NOT EXISTS ${PROJECT_SOURCE_DIR}/capicxx-core-runtime/)
@@ -61,6 +63,12 @@ execute_process(COMMAND bash -c "git clone https://github.com/GENIVI/capicxx-som
 execute_process(COMMAND bash -c "cd ${PROJECT_SOURCE_DIR}/capicxx-someip-runtime && mkdir build && cd build && cmake -DUSE_INSTALLED_COMMONAPI=OFF .. && make")
 endif()
 
+#download tiger framework and compiel
+if(NOT EXISTS ${PROJECT_SOURCE_DIR}/tiger-framework/)
+execute_process(COMMAND bash -c "git clone git@githost.nevint.com:ds/tiger-imx8/tiger-framework.git ${PROJECT_SOURCE_DIR}/tiger-framework")
+execute_process(COMMAND bash -c "cd ${PROJECT_SOURCE_DIR}/tiger-framework && mkdir build && cd build && cmake .. && make")
+endif()
+
 else()
 
 execute_process(COMMAND bash -c "echo ${COMMONAPI_INCLUDE_DIRS}")
@@ -79,6 +87,8 @@ set(VSOMEIP_PATH "${VSOMEIP_INCLUDE_DIRS}")
 
 endif()
 
+find_package(Boost 1.58 COMPONENTS log log_setup system thread REQUIRED)
+
 #generate source file form fidl 
 execute_process(COMMAND ${SDK_PATH}/bin/capicxx-core-tools/commonapi-core-generator-linux-x86_64 -sk ${PROJECT_SOURCE_DIR}/fidl/M4Agent.fidl -d ${PROJECT_SOURCE_DIR}/src-gen/core)
 execute_process(COMMAND ${SDK_PATH}/bin/capicxx-dbus-tools/commonapi-dbus-generator-linux-x86_64 ${PROJECT_SOURCE_DIR}/fidl/M4Agent.fidl -d ${PROJECT_SOURCE_DIR}/src-gen/dbus)
@@ -95,7 +105,8 @@ include_directories(
     ${CAPICXX_SOMEIP_PATH}
 	${DBUS_PATH}
 	${DBUS_PATH1}
-    ${VSOMEIP_PATH}
+	${VSOMEIP_PATH}
+	${TIGER_FRAMEWORK_PATH}
 )
 
 #link all runtime libs folder
@@ -104,7 +115,8 @@ link_directories(
     ${CAPICXX_DBUS_LINK_PATH}
     ${CAPICXX_SOMEIP_LINK_PATH}
     ${DBUS_LINK_PATH}
-    ${VSOMEIP_LINK_PATH}
+	${VSOMEIP_LINK_PATH}
+	${TIGER_LINK_PATH}
 )
 
 #generator dbus applications
@@ -113,7 +125,7 @@ add_executable(M4AgentClientDbus
 	src-gen/dbus/v1/commonapi/nio_m4_agent/M4AgentDBusProxy.cpp
 	src-gen/dbus/v1/commonapi/nio_m4_agent/M4AgentDBusDeployment
 )
-target_link_libraries(M4AgentClientDbus CommonAPI CommonAPI-DBus dbus-1)
+target_link_libraries(M4AgentClientDbus libtigerLogger.a ${Boost_LIBRARIES} CommonAPI CommonAPI-DBus dbus-1)
 add_executable(M4AgentServiceDbus
 	src/M4AgentService.cpp
 	src/M4AgentStubImpl.cpp
@@ -121,7 +133,7 @@ add_executable(M4AgentServiceDbus
 	src-gen/core/v1/commonapi/nio_m4_agent/M4AgentStubDefault
 	src-gen/dbus/v1/commonapi/nio_m4_agent/M4AgentDBusDeployment
 )
-target_link_libraries(M4AgentServiceDbus CommonAPI CommonAPI-DBus dbus-1)
+target_link_libraries(M4AgentServiceDbus libtigerLogger.a ${Boost_LIBRARIES} CommonAPI CommonAPI-DBus dbus-1)
 
 #generate someip applications
 add_executable(M4AgentClientSomeip
@@ -129,7 +141,7 @@ add_executable(M4AgentClientSomeip
 	src-gen/someip/v1/commonapi/nio_m4_agent/M4AgentSomeIPProxy.cpp
 	src-gen/someip/v1/commonapi/nio_m4_agent/M4AgentSomeIPDeployment.cpp
 )
-target_link_libraries(M4AgentClientSomeip CommonAPI CommonAPI-SomeIP vsomeip3)
+target_link_libraries(M4AgentClientSomeip libtigerLogger.a ${Boost_LIBRARIES} CommonAPI CommonAPI-SomeIP vsomeip3)
 add_executable(M4AgentServiceSomeip
 	src/M4AgentService.cpp
 	src/M4AgentStubImpl.cpp
@@ -137,4 +149,4 @@ add_executable(M4AgentServiceSomeip
 	src-gen/core/v1/commonapi/nio_m4_agent/M4AgentStubDefault
 	src-gen/someip/v1/commonapi/nio_m4_agent/M4AgentSomeIPDeployment
 )
-target_link_libraries(M4AgentServiceSomeip CommonAPI CommonAPI-SomeIP vsomeip3)
+target_link_libraries(M4AgentServiceSomeip libtigerLogger.a ${Boost_LIBRARIES} CommonAPI CommonAPI-SomeIP vsomeip3)
