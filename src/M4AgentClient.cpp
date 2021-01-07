@@ -5,7 +5,7 @@
  * @Autor: Guangxing Yang
  * @Date: 2021-01-06 10:35:47
  * @LastEditors: Guangxing Yang
- * @LastEditTime: 2021-01-07 13:55:16
+ * @LastEditTime: 2021-01-07 14:29:29
  */
 #include <iostream>
 #include <string>
@@ -18,7 +18,7 @@ using namespace v1_0::commonapi::nio_m4_agent;
 int main() {
     std::shared_ptr < CommonAPI::Runtime > runtime = CommonAPI::Runtime::get();
     std::shared_ptr<M4AgentProxy<>> myProxy =
-    	runtime->buildProxy<M4AgentProxy>("local", "test");
+    	runtime->buildProxy<M4AgentProxy>("local", "m4_agent");
 
     std::cout << "Checking availability!" << std::endl;
     while (!myProxy->isAvailable())

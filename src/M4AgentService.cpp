@@ -5,7 +5,7 @@
  * @Autor: Guangxing Yang
  * @Date: 2021-01-06 10:36:13
  * @LastEditors: Guangxing Yang
- * @LastEditTime: 2021-01-06 10:36:24
+ * @LastEditTime: 2021-01-07 14:31:40
  */
 #include <iostream>
 #include <thread>
@@ -16,9 +16,9 @@ using namespace std;
 
 int main() {
     std::shared_ptr<CommonAPI::Runtime> runtime = CommonAPI::Runtime::get();
-    std::shared_ptr<M4AgentStubImpl> myService =
+    std::shared_ptr<M4AgentStubImpl> M4AgentService =
     	std::make_shared<M4AgentStubImpl>();
-    runtime->registerService("local", "test", myService);
+    runtime->registerService("local", "m4_agent", M4AgentService);
     std::cout << "Successfully Registered Service!" << std::endl;
 
     while (true) {

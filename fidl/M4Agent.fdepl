@@ -9,9 +9,9 @@ define org.genivi.commonapi.someip.deployment for interface commonapi.nio_m4_age
 	}
 }
 
-define org.genivi.commonapi.someip.deployment for provider as MyService {
+define org.genivi.commonapi.someip.deployment for provider as M4AgentService {
 	instance commonapi.nio_m4_agent.M4Agent {
-		InstanceId = "test"
+		InstanceId = "m4_agent"
 		SomeIpInstanceID = 22136
 	}
 }
