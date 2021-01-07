@@ -4,7 +4,7 @@ import "M4Agent.fidl"
 define org.genivi.commonapi.someip.deployment for interface commonapi.nio_m4_agent.M4Agent {
 	SomeIpServiceID = 4660
 
-	method sayHello {
+	method M4Transfer {
 		SomeIpMethodID = 123
 	}
 }
