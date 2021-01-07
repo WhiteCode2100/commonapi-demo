@@ -5,7 +5,7 @@
  * @Autor: Guangxing Yang
  * @Date: 2021-01-06 10:35:47
  * @LastEditors: Guangxing Yang
- * @LastEditTime: 2021-01-07 14:57:05
+ * @LastEditTime: 2021-01-07 18:19:35
  */
 #include <iostream>
 #include <string>
@@ -26,8 +26,13 @@ int main() {
     std::cout << "Available..." << std::endl;
 
     CommonAPI::CallStatus callStatus;
-    std::string returnMessage;
-    myProxy->M4Transfer("m4 agent", callStatus, returnMessage);
-    std::cout << "Got message: '" << returnMessage << "'\n";
+    CommonAPI::ByteBuffer inputMsg;
+    inputMsg.push_back(0x35);
+    inputMsg.push_back(0x36);
+    CommonAPI::ByteBuffer returnMessage;
+    myProxy->M4Transfer(inputMsg, callStatus, returnMessage);
+    
+    for (auto i : returnMessage)
+        printf("\\x%.2x", i);
     return 0;
 }

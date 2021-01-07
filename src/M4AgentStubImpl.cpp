@@ -5,18 +5,19 @@
  * @Autor: Guangxing Yang
  * @Date: 2021-01-06 10:37:03
  * @LastEditors: Guangxing Yang
- * @LastEditTime: 2021-01-07 14:57:37
+ * @LastEditTime: 2021-01-07 18:19:54
  */
 #include "M4AgentStubImpl.hpp"
 
 M4AgentStubImpl::M4AgentStubImpl() { }
 M4AgentStubImpl::~M4AgentStubImpl() { }
 
-void M4AgentStubImpl::M4Transfer(const std::shared_ptr<CommonAPI::ClientId> _client,
-	std::string _msg, M4TransferReply_t _reply) {
-	    std::stringstream messageStream;
-	    messageStream << "Hello " << _msg << "!";
-	    std::cout << "M4Transfer('" << _msg << "'): '" << messageStream.str() << "'\n";
+void M4AgentStubImpl::M4Transfer(const std::shared_ptr<CommonAPI::ClientId> _client, CommonAPI::ByteBuffer _msg, M4TransferReply_t _reply) {
+	CommonAPI::ByteBuffer messageStream;
+	messageStream.push_back(0x11);
+	messageStream.push_back(0x12);
 
-    _reply(messageStream.str());
+	for (auto i : _msg)
+        printf("\\x%.2x", i);
+    _reply(messageStream);
 };

@@ -5,7 +5,7 @@
  * @Autor: Guangxing Yang
  * @Date: 2021-01-06 10:36:38
  * @LastEditors: Guangxing Yang
- * @LastEditTime: 2021-01-07 14:56:44
+ * @LastEditTime: 2021-01-07 18:11:30
  */
 #ifndef HELLOWORLDSTUBIMPL_H_
 #define HELLOWORLDSTUBIMPL_H_
@@ -17,6 +17,6 @@ public:
     M4AgentStubImpl();
     virtual ~M4AgentStubImpl();
     virtual void M4Transfer(const std::shared_ptr<CommonAPI::ClientId> _client,
-    	std::string _msg, M4TransferReply_t _return);
+    	CommonAPI::ByteBuffer _msg, M4TransferReply_t _return);
 };
 #endif /* HELLOWORLDSTUBIMPL_H_ */

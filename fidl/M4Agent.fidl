@@ -4,10 +4,10 @@ interface M4Agent {
   version {major 1 minor 0}
   method M4Transfer {
     in {
-      String in_message
+      ByteBuffer in_message
     }
     out {
-      String out_message
+      ByteBuffer out_message
     }
   }
 }
