@@ -5,9 +5,9 @@
  * @Autor: Guangxing Yang
  * @Date: 2021-01-06 10:37:03
  * @LastEditors: Guangxing Yang
- * @LastEditTime: 2021-01-07 18:31:52
+ * @LastEditTime: 2021-01-11 13:08:50
  */
-#include <tigerLogger.h>
+#include <tigerLogger/tigerLogger.h>
 #include "M4AgentStubImpl.hpp"
 
 M4AgentStubImpl::M4AgentStubImpl() { }
@@ -19,6 +19,6 @@ void M4AgentStubImpl::M4Transfer(const std::shared_ptr<CommonAPI::ClientId> _cli
 	messageStream.push_back(0x12);
 
 	for (auto i : _msg)
-        printf("\\x%.2x", i);
+        printf("0x%.2x", i);
     _reply(messageStream);
 };

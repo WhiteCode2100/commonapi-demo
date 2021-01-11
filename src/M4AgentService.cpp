@@ -10,7 +10,7 @@
 #include <iostream>
 #include <thread>
 #include <CommonAPI/CommonAPI.hpp>
-#include <tigerLogger.h>
+#include <tigerLogger/tigerLogger.h>
 #include "M4AgentStubImpl.hpp"
 
 int main() {

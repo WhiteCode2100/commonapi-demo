@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.8)
+cmake_minimum_required(VERSION 3.5)
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread -std=c++0x")
 set(SDK_PATH "/opt/sdk/aarch64-buildroot-linux-gnu_sdk-buildroot")
@@ -12,7 +12,7 @@ set(CAPICXX_DBUS_PATH "${PROJECT_SOURCE_DIR}/capicxx-dbus-runtime/include")
 set(CAPICXX_SOMEIP_PATH "${PROJECT_SOURCE_DIR}/capicxx-someip-runtime/include")
 set(DBUS_PATH "${PROJECT_SOURCE_DIR}/dbus-1.10.10")
 set(VSOMEIP_PATH "${PROJECT_SOURCE_DIR}/vsomeip/interface")
-set(TIGER_FRAMEWORK_PATH "${PROJECT_SOURCE_DIR}/tiger-framework/tigerLogger")
+set(TIGER_FRAMEWORK_PATH "${PROJECT_SOURCE_DIR}/tiger-framework/")
 
 #define commonapi link folder path
 set(CAPICXX_CORE_LINK_PATH "${PROJECT_SOURCE_DIR}/capicxx-core-runtime/build")
@@ -88,6 +88,9 @@ set(VSOMEIP_PATH "${VSOMEIP_INCLUDE_DIRS}")
 endif()
 
 find_package(Boost 1.58 COMPONENTS log log_setup system thread REQUIRED)
+
+include(FindPkgConfig)
+pkg_check_modules(DBus REQUIRED dbus-1>=1.4)
 
 #generate source file form fidl 
 execute_process(COMMAND ${SDK_PATH}/bin/capicxx-core-tools/commonapi-core-generator-linux-x86_64 -sk ${PROJECT_SOURCE_DIR}/fidl/M4Agent.fidl -d ${PROJECT_SOURCE_DIR}/src-gen/core)

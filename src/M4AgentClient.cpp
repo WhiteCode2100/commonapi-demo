@@ -5,14 +5,14 @@
  * @Autor: Guangxing Yang
  * @Date: 2021-01-06 10:35:47
  * @LastEditors: Guangxing Yang
- * @LastEditTime: 2021-01-07 18:50:08
+ * @LastEditTime: 2021-01-07 18:52:59
  */
 #include <iostream>
 #include <string>
 #include <unistd.h>
 #include <CommonAPI/CommonAPI.hpp>
 #include <v1/commonapi/nio_m4_agent/M4AgentProxy.hpp>
-#include <tigerLogger.h>
+#include <tigerLogger/tigerLogger.h>
 
 using namespace v1_0::commonapi::nio_m4_agent;
 
@@ -33,6 +33,6 @@ int main() {
     myProxy->M4Transfer(inputMsg, callStatus, returnMessage);
     
     for (auto i : returnMessage)
-        printf("\\x%.2x", i);
+        printf("0x%.2x", i);
     return 0;
 }
