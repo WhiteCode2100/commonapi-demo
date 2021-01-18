@@ -1,0 +1,19 @@
+Application compile process:
+modify CMakeLists:
+    set(SDK_PATH "/opt/sdk/aarch64-buildroot-linux-gnu_sdk-buildroot")
+    to your own sdk path
+Local compile:
+    mkdir build
+    cd build
+    cmake ..
+    make
+Cross compile:(modify cmake -DCMAKE_TOOLCHAIN_FILE to your own SDK path)
+    mkdir build
+    cd build
+    cmake -DCMAKE_TOOLCHAIN_FILE=/opt/sdk/aarch64-buildroot-linux-gnu_sdk-buildroot/share/buildroot/toolchainfile.cmake ..
+    make
+Clean:
+    go to project folder, clean current build status:
+        make clean              
+    clean all build files:
+        make distclean

@@ -1,11 +1,11 @@
 /*
  * @Description: 
- * @FilePath: /example/src/M4AgentClient.cpp
+ * @FilePath: /m4-agent/src/M4AgentClient.cpp
  * @Version: 1.0
  * @Autor: Guangxing Yang
  * @Date: 2021-01-06 10:35:47
  * @LastEditors: Guangxing Yang
- * @LastEditTime: 2021-01-07 18:52:59
+ * @LastEditTime: 2021-01-18 10:10:12
  */
 #include <iostream>
 #include <string>
@@ -33,6 +33,6 @@ int main() {
     myProxy->M4Transfer(inputMsg, callStatus, returnMessage);
     
     for (auto i : returnMessage)
-        printf("0x%.2x", i);
+        printf("0x%.2x\r\n", i);
     return 0;
 }
