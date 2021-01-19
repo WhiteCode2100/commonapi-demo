@@ -1,11 +1,11 @@
 /*
- * @Description: 
+ * @Description: M4Agent client application for test
  * @FilePath: /m4-agent/src/M4AgentClient.cpp
  * @Version: 1.0
  * @Autor: Guangxing Yang
  * @Date: 2021-01-06 10:35:47
  * @LastEditors: Guangxing Yang
- * @LastEditTime: 2021-01-18 10:10:12
+ * @LastEditTime: 2021-01-19 14:57:03
  */
 #include <iostream>
 #include <string>
@@ -13,6 +13,7 @@
 #include <CommonAPI/CommonAPI.hpp>
 #include <v1/commonapi/nio_m4_agent/M4AgentProxy.hpp>
 #include <tigerLogger/tigerLogger.h>
+#include "M4Interface.h"
 
 using namespace v1_0::commonapi::nio_m4_agent;
 

@@ -132,6 +132,7 @@ target_link_libraries(M4AgentClientDbus libtigerLogger.a ${Boost_LIBRARIES} Comm
 add_executable(M4AgentServiceDbus
 	src/M4AgentService.cpp
 	src/M4AgentStubImpl.cpp
+	src/M4Interface.cpp
 	src-gen/dbus/v1/commonapi/nio_m4_agent/M4AgentDBusStubAdapter.cpp
 	src-gen/core/v1/commonapi/nio_m4_agent/M4AgentStubDefault
 	src-gen/dbus/v1/commonapi/nio_m4_agent/M4AgentDBusDeployment
@@ -148,6 +149,7 @@ target_link_libraries(M4AgentClientSomeip libtigerLogger.a ${Boost_LIBRARIES} Co
 add_executable(M4AgentServiceSomeip
 	src/M4AgentService.cpp
 	src/M4AgentStubImpl.cpp
+	src/M4Interface.cpp
 	src-gen/someip/v1/commonapi/nio_m4_agent/M4AgentSomeIPStubAdapter.cpp
 	src-gen/core/v1/commonapi/nio_m4_agent/M4AgentStubDefault
 	src-gen/someip/v1/commonapi/nio_m4_agent/M4AgentSomeIPDeployment
